@@ -38,7 +38,7 @@ app.get('/events',(req,res)=>{
 
 
 
-app.get('/events:id',(req,res)=>{
+app.get('/events/:id',(req,res)=>{
   const id = ObjectID(req.params.id);
   productCollection.find({_id:id})
   .toArray((err,items)=>{
