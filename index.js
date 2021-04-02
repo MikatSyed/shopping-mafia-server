@@ -3,6 +3,8 @@ const MongoClient = require('mongodb').MongoClient;
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
+ObjectID = require('mongodb').ObjectID,
+
 require('dotenv').config()
 
 const port = process.env.PORT || 5055
@@ -13,7 +15,7 @@ app.use(bodyParser.json())
 
 
 app.get('/', (req, res) => {
-  res.send('Hello it is working ')
+  res.send('Hello World! ')
 })
 
 
@@ -36,6 +38,15 @@ app.get('/events',(req,res)=>{
 
 
 
+app.get('/events:id',(req,res)=>{
+  const id = ObjectID(req.params.id);
+  productCollection.find({_id:id})
+  .toArray((err,items)=>{
+      res.send(items)
+ 
+
+  })
+})
 
 
 
